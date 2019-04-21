@@ -7,10 +7,10 @@
   "license": "MIT",
   "scripts": {
     "start": "node build/app.js",
-    "start:dev": "nodemon --exec babel-node -- server/app.js",
+    "start:dev": "export NODE_ENV=development && nodemon --exec babel-node -- server/app.js",
     "start:prod": "yarn build:prod && yarn start",
     "build:prod": "rm -rf build/server && export NODE_ENV=production && babel server -d build/",
-    "heroku-postbuild": "babel server -d build/"
+    "test": "export NODE_ENV=test && nyc --reporter=html --reporter=text mocha --timeout 500000 --require @babel/register --require @babel/polyfill server/tests/*test.js"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -27,13 +27,18 @@
   "devDependencies": {
     "@babel/core": "^7.3.4",
     "@babel/node": "^7.2.2",
+    "@babel/polyfill": "^7.4.3",
     "@babel/preset-env": "^7.3.4",
     "@babel/register": "^7.0.0",
     "babel-eslint": "^10.0.1",
+    "chai": "^4.2.0",
     "eslint": "^5.15.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.12.4"
+    "eslint-plugin-react": "^7.12.4",
+    "mocha": "^6.1.4",
+    "nyc": "^14.0.0",
+    "supertest": "^4.0.2"
   }
 }
