@@ -20,7 +20,7 @@ const validateName = (inputValue, errors, field, type) => {
   }
 };
 
-const validatePopulation = (inputValue, errors, field, type) => {
+const validatePopulation = (inputValue, errors, field) => {
   const lowercaseField = field.toLowerCase();
   const regex = /^[0-9]*$/;
   if (!validator.isEmpty(inputValue)) {
